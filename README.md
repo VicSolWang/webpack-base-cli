@@ -1,7 +1,6 @@
 # webpack-base-cli
 
-[![npm version](https://badge.fury.io/js/webpack-base-cli.svg)](https://badge.fury.io/js/webpack-base-cli)
-
+[![NPM version](https://img.shields.io/npm/v/webpack-base-cli.svg)](https://www.npmjs.com/package/webpack-base-cli)
 
 # Installation
 

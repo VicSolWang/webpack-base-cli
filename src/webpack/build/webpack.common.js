@@ -6,6 +6,7 @@
 
 const HtmlResWebpackPlugin = require('html-res-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin-hash');
+const fs = require('fs-extra');
 const path = require('path');
 const config = require('../utils/getBuildConfig')();
 const getConfig = require('../utils/getConfig');
@@ -82,21 +83,24 @@ const webpackConfig = {
 			'.json',
 		],
 	},
-	plugins: [
-		// Copy library files directly to the output directory.
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve(config.path.src, 'libs/'),
-				to: 'libs/',
-			},
-		]),
-	],
+	plugins: [],
 };
 
 // Add webpack plugins.
 const addPlugins = (Plugin, opt) => {
 	webpackConfig.plugins.push(new Plugin(opt));
 };
+
+// Copy library files directly to the output directory if the library exists.
+const libsPath = path.resolve(config.path.src, 'libs/');
+if (fs.pathExistsSync(libsPath)) {
+	addPlugins(CopyWebpackPlugin, [
+		{
+			from: libsPath,
+			to: 'libs/',
+		},
+	]);
+}
 
 // Add HtmlResWebacpk plugin for every HTML.
 config.html.forEach((page) => {
