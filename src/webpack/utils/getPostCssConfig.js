@@ -7,11 +7,12 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-// Get root path of user's project.
-const rootPath = process.cwd();
-
-const getPostCssConfig = () => (fs.pathExistsSync(path.resolve(rootPath, 'postcss.config.js'))
-	? rootPath
-	: path.resolve(__dirname, '../config'));
+const getPostCssConfig = () => {
+	// Get root path of user's project.
+	const rootPath = process.cwd();
+	return fs.pathExistsSync(path.resolve(rootPath, 'postcss.config.js'))
+		? rootPath
+		: path.resolve(__dirname, '../config');
+};
 
 module.exports = getPostCssConfig;

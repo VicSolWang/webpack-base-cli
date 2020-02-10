@@ -22,36 +22,39 @@ module.exports = merge(common, {
 		chunkFilename: `js/[name]${config.chunkhash}.js`,
 	},
 	module: {
-		rules: [{
-			test: /\.css$/,
-			use: [
-				MiniCssExtractPlugin.loader,
-				'css-loader',
-				{
-					loader: 'postcss-loader',
-					options: {
-						config: {
-							path: postCssConfig,
+		rules: [
+			{
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							config: {
+								path: postCssConfig,
+							},
 						},
 					},
-				},
-			],
-		}, {
-			test: /\.less$/,
-			use: [
-				MiniCssExtractPlugin.loader,
-				'css-loader',
-				{
-					loader: 'postcss-loader',
-					options: {
-						config: {
-							path: postCssConfig,
+				],
+			},
+			{
+				test: /\.less$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							config: {
+								path: postCssConfig,
+							},
 						},
 					},
-				},
-				'less-loader',
-			],
-		}],
+					'less-loader',
+				],
+			},
+		],
 	},
 	optimization: {
 		// Split the third-party library code into vendor.js and vendor.css according to the default settings.

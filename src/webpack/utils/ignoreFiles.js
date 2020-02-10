@@ -4,4 +4,13 @@
  * Email: vic.sol.wang@gmail.com
  */
 
-module.exports = ['libs', 'common', 'components', 'store', 'utils', 'tools', 'images', 'json'];
+module.exports = [
+	'libs',
+	'common',
+	'components',
+	'store',
+	'utils',
+	'tools',
+	'images',
+	'json',
+];

@@ -15,7 +15,9 @@ const getConfig = (name) => {
 	// Get default config path.
 	const defaultConfigPath = path.resolve(__dirname, `../config/${name}`);
 	const userConfig = fs.pathExistsSync(userConfigPath) ? userConfigPath : '';
-	const defaultConfig = fs.pathExistsSync(defaultConfigPath) ? defaultConfigPath : '';
+	const defaultConfig = fs.pathExistsSync(defaultConfigPath)
+		? defaultConfigPath
+		: '';
 	return userConfig || defaultConfig || null;
 };
 

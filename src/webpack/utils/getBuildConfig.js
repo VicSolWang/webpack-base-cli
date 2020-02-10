@@ -7,8 +7,9 @@
 const { Base64 } = require('js-base64');
 const config = require('../config/buildConfig');
 
-const getBuildConfig = () => (process.env.WEBPACK_CONFIG
-	? JSON.parse(Base64.decode(process.env.WEBPACK_CONFIG))
-	: config);
+const getBuildConfig = () => {
+	const buildConfigStr = process.env.WEBPACK_CONFIG;
+	return buildConfigStr ? JSON.parse(Base64.decode(buildConfigStr)) : config;
+};
 
 module.exports = getBuildConfig;

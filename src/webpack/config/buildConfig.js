@@ -42,7 +42,13 @@ const buildConfig = {
 // Scan automatically HTML files in the client directory.
 buildConfig.html = filePathUtil.getHtmlFile(buildConfig.path.src);
 // Scan automatically entry JS files in the client directory, which is src/index.js(.jsx) or src/xxx/index.js(.jsx) by default.
-buildConfig.entry = filePathUtil.getJsFile(buildConfig.path.src, '', 'index', ['js', 'jsx'], ignoreFiles);
+buildConfig.entry = filePathUtil.getJsFile(
+	buildConfig.path.src,
+	'',
+	'index',
+	['js', 'jsx'],
+	ignoreFiles,
+);
 // Scan automatically the ico file named favicon in the client directory.
 buildConfig.favicon = path.resolve(buildConfig.path.src, 'favicon.ico');
 

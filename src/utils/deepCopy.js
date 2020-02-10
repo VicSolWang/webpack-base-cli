@@ -8,9 +8,10 @@ const deepCopy = (targetObj = {}, sourceObj = {}) => {
 	const tempData = targetObj;
 	Object.keys(sourceObj).forEach((item) => {
 		if (typeof sourceObj[item] === 'object') {
-			deepCopy(tempData[item]
-				? tempData[item]
-				: (tempData[item] = {}), sourceObj[item]);
+			deepCopy(
+				tempData[item] ? tempData[item] : (tempData[item] = {}),
+				sourceObj[item],
+			);
 		} else {
 			tempData[item] = sourceObj[item];
 		}

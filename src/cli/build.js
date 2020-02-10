@@ -16,24 +16,25 @@ const command = 'build';
 module.exports = {
 	command,
 	desc: 'Build the project',
-	builder: (yargs) => yargs
-		.options({
-			prod: {
-				alias: 'p',
-				describe: 'Set production environment',
-				default: false,
-				type: 'boolean',
-			},
-			config: {
-				alias: 'c',
-				describe: 'Set webpack config',
-				type: 'string',
-			},
-		})
-		.usage(`Usage: $0 ${command} [options]`)
-		.example(`$0 ${command} -p false -t config.js`)
-		.help()
-		.alias('help', 'h'),
+	builder: (yargs) =>
+		yargs
+			.options({
+				prod: {
+					alias: 'p',
+					describe: 'Set production environment',
+					default: false,
+					type: 'boolean',
+				},
+				config: {
+					alias: 'c',
+					describe: 'Set webpack config',
+					type: 'string',
+				},
+			})
+			.usage(`Usage: $0 ${command} [options]`)
+			.example(`$0 ${command} -p false -t config.js`)
+			.help()
+			.alias('help', 'h'),
 	handler: (argv) => {
 		// Set webpack build config
 		let buildConfig = config;
@@ -44,7 +45,10 @@ module.exports = {
 		const buildConfigStr = Base64.encode(JSON.stringify(buildConfig));
 		// Child process executes build command
 		const srcPath = path.resolve(__dirname, '..');
-		const webpackConfigPath = path.resolve(srcPath, `webpack/build/webpack.${argv.prod ? 'prod' : 'dev'}.js`);
+		const webpackConfigPath = path.resolve(
+			srcPath,
+			`webpack/build/webpack.${argv.prod ? 'prod' : 'dev'}.js`,
+		);
 		const webpackCommand = argv.prod
 			? `cross-env NODE_ENV=production WEBPACK_CONFIG=${buildConfigStr} webpack --config ${webpackConfigPath}`
 			: `cross-env NODE_ENV=development WEBPACK_CONFIG=${buildConfigStr} webpack-dev-server --open --config ${webpackConfigPath}`;

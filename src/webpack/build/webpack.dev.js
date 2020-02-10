@@ -19,25 +19,22 @@ module.exports = merge(common, {
 		chunkFilename: 'js/[name].js',
 	},
 	module: {
-		rules: [{
-			test: /\.css$/,
-			use: [
-				'style-loader',
-				'css-loader',
-			],
-		}, {
-			test: /\.less$/,
-			use: [
-				'style-loader',
-				'css-loader',
-				'less-loader',
-			],
-		}],
+		rules: [
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.less$/,
+				use: ['style-loader', 'css-loader', 'less-loader'],
+			},
+		],
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(), // Hot update module HMR
-		new webpack.NoEmitOnErrorsPlugin(), // If compile error, don't exit webpack process
+		new webpack.HotModuleReplacementPlugin(), // Hot update module HMR.
+		new webpack.NoEmitOnErrorsPlugin(), // If compile error, don't exit webpack process.
 	],
+	// Set the proxy server configs in the development environment.
 	devServer: {
 		port: config.devServerPort,
 		proxy: {
