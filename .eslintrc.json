@@ -1,0 +1,14 @@
+{
+	"extends": "eslint-config-wzx",
+	"rules": {
+		"global-require": "off",
+		"import/no-dynamic-require": "off",
+		"max-len": [
+			"error",
+			{
+				"code": 160,
+				"ignoreComments": true
+			}
+		]
+	}
+}
