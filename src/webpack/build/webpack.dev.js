@@ -43,6 +43,8 @@ module.exports = merge(common, {
 				pathRewrite: {
 					[`^${config.devServerProxyPrefix}`]: '',
 				},
+				changeOrigin: true,
+				secure: false,
 			},
 		},
 		hot: true,
