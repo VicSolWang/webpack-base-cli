@@ -2,6 +2,8 @@
 
 [![NPM version](https://img.shields.io/npm/v/webpack-base-cli.svg)](https://www.npmjs.com/package/webpack-base-cli)
 
+Use webpack to build project
+
 # Installation
 
     npm install -g webpack-base-cli

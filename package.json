@@ -1,7 +1,7 @@
 {
 	"name": "webpack-base-cli",
-	"version": "0.0.2",
-	"description": "",
+	"version": "0.0.3",
+	"description": "Use webpack to build project",
 	"bin": {
 		"webpack-base-cli": "src/index.js"
 	},
@@ -66,7 +66,7 @@
 		"@commitlint/cli": "^8.3.5",
 		"@commitlint/config-conventional": "^8.3.4",
 		"eslint": "^6.8.0",
-		"eslint-config-wzx": "^0.0.4",
+		"eslint-config-wzx": "^0.1.1",
 		"husky": "^4.2.1",
 		"lint-staged": "^10.0.7",
 		"prettier": "^1.19.1"

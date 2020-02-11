@@ -49,6 +49,7 @@ const webpackConfig = {
 							limit: 10240, // Convert it to Base64 if it is smaller than 10KB.
 							name: `[name]${config.contenthash}.[ext]`,
 							outputPath: 'images/',
+							esModule: false,
 						},
 					},
 				],
