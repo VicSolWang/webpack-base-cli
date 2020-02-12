@@ -52,12 +52,14 @@ module.exports = {
 		const webpackCommand = argv.prod
 			? `cross-env NODE_ENV=production WEBPACK_CONFIG=${buildConfigStr} webpack --config ${webpackConfigPath}`
 			: `cross-env NODE_ENV=development WEBPACK_CONFIG=${buildConfigStr} webpack-dev-server --open --config ${webpackConfigPath}`;
-		childProcess.exec(webpackCommand, (error, stdout) => {
+		const workerProcess = childProcess.exec(webpackCommand, {});
+		// Print logs.
+		workerProcess.stdout.on('data', (data) => {
 			// eslint-disable-next-line no-console
-			console.log(stdout);
-			if (error) {
-				console.error(error);
-			}
+			console.log(data);
+		});
+		workerProcess.stderr.on('data', (data) => {
+			console.error(data);
 		});
 	},
 };
