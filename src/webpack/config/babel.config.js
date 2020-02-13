@@ -4,6 +4,7 @@
  * Email: vic.sol.wang@gmail.com
  */
 
+const config = require('../utils/getBuildConfig')();
 const getConfig = require('../utils/getConfig');
 
 module.exports = {
@@ -12,6 +13,12 @@ module.exports = {
 		[
 			'@babel/preset-env',
 			{
+				useBuiltIns:
+					process.env.NODE_ENV === 'production'
+					&& config.supportNewAPI
+						? 'usage'
+						: false,
+				corejs: 3,
 				targets: {
 					browsers: require(getConfig('browserslist.js')),
 				},

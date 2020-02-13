@@ -20,9 +20,25 @@ const htmlMinifyConfig = {
 	minifyCSS: true,
 };
 
+// Handle webpack entry.
+const handleEntry = (entry) => {
+	// Add core-js/stable and regenerator-runtime/runtime as polyfill in the production environment.
+	if (process.env.NODE_ENV === 'production' && config.supportNewAPI) {
+		const tempData = {};
+		Object.keys(entry).forEach((item) => {
+			tempData[item] = [
+				'core-js/stable',
+				'regenerator-runtime/runtime',
+			].concat(entry[item]);
+		});
+		return tempData;
+	}
+	return entry;
+};
+
 // Set public webpack configs.
 const webpackConfig = {
-	entry: config.entry,
+	entry: handleEntry(config.entry),
 	module: {
 		rules: [
 			{
