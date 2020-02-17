@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+    - 12
+    - 10
+    - 8
+script:
+    - npm run test && npm run cover:report
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

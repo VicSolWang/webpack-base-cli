@@ -1,6 +1,9 @@
 node_modules
+/test/output
 package-lock.json
 yarn.lock
+coverage*
+.nyc_output
 .idea
 .vscode
 .DS_Store

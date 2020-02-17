@@ -18,7 +18,11 @@ module.exports = {
 					&& config.supportNewAPI
 						? 'usage'
 						: false,
-				corejs: 3,
+				corejs:
+					process.env.NODE_ENV === 'production'
+					&& config.supportNewAPI
+						? 3
+						: null,
 				targets: {
 					browsers: require(getConfig('browserslist.js')),
 				},
