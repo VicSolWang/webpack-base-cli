@@ -17,6 +17,7 @@ workerProcess.on('message', (msg) => {
 	if (typeof status !== 'undefined') {
 		test('Execute build command in the development environment to validate the result is correct.', (t) => {
 			t.true(status);
+			workerProcess.kill(2);
 		});
 	}
 });

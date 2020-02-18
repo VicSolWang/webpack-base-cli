@@ -38,6 +38,7 @@ workerProcess.on('message', (msg) => {
 			t.is(includeFilesNums(`${output}/js`), 2);
 			t.is(includeFilesNums(`${output}/css`), 2);
 			shell.rm('-rf', output);
+			workerProcess.kill(2);
 		});
 	}
 });
