@@ -11,8 +11,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
-const fs = require('fs-extra');
-const path = require('path');
 const common = require('./webpack.common');
 const config = require('../utils/getBuildConfig')();
 const postCssConfig = require('../utils/getPostCssConfig')();
@@ -86,9 +84,7 @@ module.exports = merge(common, {
 		}),
 		// Compress images
 		new ImageminPlugin({
-			disable:
-				!fs.pathExistsSync(path.resolve('node_modules/imagemin'))
-				|| !config.imageCompress,
+			disable: !config.imageCompress,
 			pngquant: {
 				quality: '65-90',
 			},
