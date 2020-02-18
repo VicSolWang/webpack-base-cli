@@ -80,7 +80,7 @@
 	"peerDependencies": {
 		"core-js": "^3.6.4"
 	},
-	"bundleddependencies": {
+	"optionalDependencies": {
 		"imagemin-mozjpeg": "^8.0.0",
 		"imagemin-webpack-plugin": "^2.4.2"
 	},
