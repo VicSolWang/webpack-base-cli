@@ -57,7 +57,7 @@ module.exports = {
 		workerProcess.stdout.on('data', (data) => {
 			// eslint-disable-next-line no-console
 			console.log(data);
-			if (data.includes('Compiled')) {
+			if (data.includes('Compiled') && process.send) {
 				process.send({ status: data.includes('successfully') });
 			}
 		});
@@ -65,7 +65,9 @@ module.exports = {
 			console.error(data);
 		});
 		workerProcess.on('close', () => {
-			process.send({ status: true });
+			if (process.send) {
+				process.send({ status: true });
+			}
 		});
 	},
 };
