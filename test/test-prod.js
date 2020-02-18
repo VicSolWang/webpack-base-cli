@@ -5,8 +5,11 @@
  */
 
 const fs = require('fs-extra');
+const childProcess = require('child_process');
 const shell = require('shelljs');
 const test = require('ava');
+
+const output = 'test/output';
 
 const pathExists = (path) => fs.pathExistsSync(path);
 
@@ -15,16 +18,26 @@ const includeFilesNums = (path) =>
 		.readdirSync(path)
 		.filter((item) => /^(index|vendor)-.*\.(js|css)$/.test(item)).length;
 
-const output = 'test/output';
-
-test('Execute build command in the production environment to validate the result is correct.', async (t) => {
-	await shell.rm('-rf', output);
-	await shell.exec('node src/index.js build -p true -c test/build/config.js');
-	t.true(pathExists(output));
-	t.true(pathExists(`${output}/index.html`));
-	t.true(pathExists(`${output}/js`));
-	t.true(pathExists(`${output}/css`));
-	t.is(includeFilesNums(`${output}/js`), 2);
-	t.is(includeFilesNums(`${output}/css`), 2);
-	await shell.rm('-rf', output);
+shell.rm('-rf', output);
+const workerProcess = childProcess.fork('src/index.js', [
+	'build',
+	'-p',
+	true,
+	'-c',
+	'test/build/config.js',
+]);
+workerProcess.on('message', (msg) => {
+	const { status } = msg || {};
+	if (typeof status !== 'undefined') {
+		test('Execute build command in the production environment to validate the result is correct.', (t) => {
+			t.true(status);
+			t.true(pathExists(output));
+			t.true(pathExists(`${output}/index.html`));
+			t.true(pathExists(`${output}/js`));
+			t.true(pathExists(`${output}/css`));
+			t.is(includeFilesNums(`${output}/js`), 2);
+			t.is(includeFilesNums(`${output}/css`), 2);
+			shell.rm('-rf', output);
+		});
+	}
 });

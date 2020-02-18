@@ -64,5 +64,8 @@ module.exports = {
 		workerProcess.stderr.on('data', (data) => {
 			console.error(data);
 		});
+		workerProcess.on('close', () => {
+			process.send({ status: true });
+		});
 	},
 };
