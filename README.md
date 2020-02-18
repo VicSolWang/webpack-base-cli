@@ -28,6 +28,39 @@ Use webpack to build project
 
     webpack-base-cli build -p true  -c config.js
 
+#### Description
+Default configuration is recommended, including config.js, babel.config.js, postcss.config.js, browserslist.js and other files. You can also configure these files by yourself, provided they are placed in the root directory of your project.
+
+The default configuration of config.js is roughly as follows:
+
+    const path = require('path');
+
+    const config = {
+	    path: {
+            src: path.resolve(process.cwd(), 'src'),
+            dev: path.resolve(process.cwd(), 'dev'),
+            prod: path.resolve(process.cwd(), 'output'),
+            devPublicPath: '/',
+            prodPublicPath: '',
+	    },
+	    devServerPort: 8888,
+	    backEndServer: '',
+	    hash: '-[hash:6]',
+	    chunkhash: '-[chunkhash:6]',
+	    contenthash: '-[contenthash:6]',
+	    supportNewAPI: true,
+	    imageCompress: true,
+	    html: [{
+	        name: 'index.html',
+	        path: path.resolve(process.cwd(), 'src/index.html'),
+        }],
+	    entry: {
+	        index: [path.resolve(process.cwd(), 'src/index.js')]
+	    },
+	    favicon: path.resolve(process.cwd(), 'src/favicon.ico'),
+    };
+
+Note: generally speaking, you only need to configure path.prodPublicPath and backEndServer in your own config.js.
 
 # License
 

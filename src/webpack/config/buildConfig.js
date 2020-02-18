@@ -38,6 +38,8 @@ const buildConfig = {
 	contenthash: '-[contenthash:6]',
 	// Whether open babel-polyfill in the production environment, the default is enabled.
 	supportNewAPI: true,
+	// Whether compress images in the production environment, the default is enabled.
+	imageCompress: true,
 };
 // Scan automatically HTML files in the client directory.
 buildConfig.html = filePathUtil.getHtmlFile(buildConfig.path.src);

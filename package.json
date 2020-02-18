@@ -1,6 +1,6 @@
 {
 	"name": "webpack-base-cli",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "Use webpack to build project",
 	"bin": {
 		"webpack-base-cli": "src/index.js"
@@ -48,6 +48,8 @@
 		"fs-extra": "^8.1.0",
 		"html-loader": "^0.5.5",
 		"html-res-webpack-plugin": "^4.0.5",
+		"imagemin-mozjpeg": "^8.0.0",
+		"imagemin-webpack-plugin": "^2.4.2",
 		"js-base64": "^2.5.1",
 		"less": "^3.10.3",
 		"less-loader": "^5.0.0",
@@ -79,6 +81,9 @@
 	},
 	"peerDependencies": {
 		"core-js": "^3.6.4"
+	},
+	"bundleddependencies": {
+		"imagemin-webpack-plugin": "^2.4.2"
 	},
 	"ava": {
 		"files": [

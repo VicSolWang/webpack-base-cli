@@ -9,6 +9,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const fs = require('fs-extra');
+const path = require('path');
 const common = require('./webpack.common');
 const config = require('../utils/getBuildConfig')();
 const postCssConfig = require('../utils/getPostCssConfig')();
@@ -79,6 +83,21 @@ module.exports = merge(common, {
 		new MiniCssExtractPlugin({
 			filename: `css/[name]${config.contenthash}.css`,
 			chunkFilename: `css/[name]${config.contenthash}.css`,
+		}),
+		// Compress images
+		new ImageminPlugin({
+			disable:
+				!fs.pathExistsSync(path.resolve('node_modules/imagemin'))
+				|| !config.imageCompress,
+			pngquant: {
+				quality: '65-90',
+			},
+			plugins: [
+				imageminMozjpeg({
+					quality: 65,
+					progressive: true,
+				}),
+			],
 		}),
 	],
 });
