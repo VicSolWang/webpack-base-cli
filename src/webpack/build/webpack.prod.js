@@ -18,7 +18,27 @@ const postCssConfig = require('../utils/getPostCssConfig')();
 let ImageminPlugin;
 let ImageminMozjpeg;
 let imageminPluginConfig;
-if (fs.pathExistsSync(path.resolve('node_modules/imagemin'))) {
+const imageminPluginNeedPkg = [
+	'imagemin-webpack-plugin',
+	'imagemin',
+	'imagemin-pngquant',
+	'imagemin-optipng',
+	'imagemin-mozjpeg',
+	'imagemin-jpegtran',
+	'imagemin-gifsicle',
+	'imagemin-svgo',
+	'pngquant-bin',
+	'optipng-bin',
+	'mozjpeg',
+	'jpegtran-bin',
+	'gifsicle',
+	'svgo',
+];
+if (
+	imageminPluginNeedPkg.filter((item) =>
+		fs.pathExistsSync(path.resolve(`node_modules/${item}`)),
+	).length === imageminPluginNeedPkg.length
+) {
 	ImageminPlugin = require('imagemin-webpack-plugin').default;
 	ImageminMozjpeg = require('imagemin-mozjpeg');
 
