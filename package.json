@@ -1,6 +1,6 @@
 {
 	"name": "webpack-base-cli",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Use webpack to build project",
 	"bin": {
 		"webpack-base-cli": "src/index.js"

@@ -57,7 +57,7 @@ if (
 	};
 }
 
-module.exports = merge(common, {
+const webpackProdConfig = {
 	mode: 'production',
 	output: {
 		publicPath: config.path.prodPublicPath,
@@ -124,7 +124,12 @@ module.exports = merge(common, {
 			filename: `css/[name]${config.contenthash}.css`,
 			chunkFilename: `css/[name]${config.contenthash}.css`,
 		}),
-		// Compress images
-		ImageminPlugin ? new ImageminPlugin(imageminPluginConfig) : null,
 	],
-});
+};
+
+// Compress images
+if (ImageminPlugin) {
+	webpackProdConfig.plugins.push(new ImageminPlugin(imageminPluginConfig));
+}
+
+module.exports = merge(common, webpackProdConfig);
