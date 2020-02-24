@@ -1,6 +1,6 @@
 {
 	"name": "webpack-base-cli",
-	"version": "0.0.9",
+	"version": "0.1.0",
 	"description": "Use webpack to build project",
 	"bin": {
 		"webpack-base-cli": "src/index.js"
@@ -81,6 +81,10 @@
 	},
 	"peerDependencies": {
 		"core-js": "^3.6.4"
+	},
+	"optionalDependencies": {
+		"imagemin-mozjpeg": "^8.0.0",
+		"imagemin-webpack-plugin": "^2.4.2"
 	},
 	"ava": {
 		"files": [
