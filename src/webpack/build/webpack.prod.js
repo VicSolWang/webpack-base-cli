@@ -28,10 +28,18 @@ const imageminPluginNeedPkg = [
 	'imagemin-gifsicle',
 	'imagemin-svgo',
 	'pngquant-bin',
+	`pngquant-bin/vendor/pngquant${process.platform === 'win32' ? '.exe' : ''}`,
 	'optipng-bin',
+	`optipng-bin/vendor/optipng${process.platform === 'win32' ? '.exe' : ''}`,
 	'mozjpeg',
+	`mozjpeg/vendor/cjpeg${process.platform === 'win32' ? '.exe' : ''}`,
 	'jpegtran-bin',
+	`jpegtran-bin/vendor/jpegtran${process.platform === 'win32' ? '.exe' : ''}`,
+	`jpegtran-bin/vendor/${
+		process.platform === 'win32' ? 'libjpeg-62.dll' : ''
+	}`,
 	'gifsicle',
+	`gifsicle/vendor/gifsicle${process.platform === 'win32' ? '.exe' : ''}`,
 	'svgo',
 ];
 if (
